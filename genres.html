@@ -26,10 +26,16 @@
         </div>
     </header>
 
-    <section class="genres">
+    <section class="inputTable">
         <div class="container">
-            <h2>Genres</h2>
-            <p>This page allows admins to manage genres in the database.</p>
+            <h2>Add New Genre</h2>
+            <form id="genresForm">
+                <div class="form-group">
+                    <label for="genreName">Genre Name:</label>
+                    <input type="text" id="genreName" name="genreName" required>
+                </div>
+                <button type="submit">Create</button>
+            </form>
         </div>
     </section>
 
