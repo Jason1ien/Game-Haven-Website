@@ -41,42 +41,53 @@ nav ul li a {
     color: #fff;
     text-decoration: none;
     padding: 10px;
-    transition: background-color 0.3s, transform 0.3s;
 }
 
 nav ul li a:hover {
     background-color: #555;
-    transform: scale(1.1);
 }
 
-.hero {
-    background: #f4f4f4;
-    padding: 50px 0;
-    text-align: center;
-}
-
-.orders,
-.inventory-games,
-.inventory-platforms {
-    background-color: #fff;
+section.inputTable {
     padding: 50px 0;
 }
 
-.orders h2,
-.inventory-games h2,
-.inventory-platforms h2 {
+.container form {
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 10px;
     text-align: center;
 }
 
-.orders p,
-.inventory-games p,
-.inventory-platforms p {
-    text-align: center;
+.container form .form-group {
+    margin-bottom: 20px;
+    text-align: left;
 }
 
-footer {
-    background: #333;
+.container form .form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.container form .form-group input[type="text"],
+.container form .form-group input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.container form button {
+    background-color: #333;
     color: #fff;
-    padding: 20px 0;
-    text-align: center;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.container form button:hover {
+    background-color: #555;
 }

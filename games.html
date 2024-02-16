@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Haven - Customers</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Game Haven Admin</h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="customers.html">Customers</a></li>
+                    <li><a href="orders.html">Orders</a></li>
+                    <li><a href="orderdetails.html">Order Details</a></li>
+                    <li><a href="games.html">Games</a></li>
+                    <li><a href="platforms.html">Platforms</a></li>
+                    <li><a href="genres.html">Genres</a></li>
+                    <li><a href="gameplatforms.html">Game Platforms</a></li>
+                    <li><a href="gamegenres.html">Game Genres</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="inputTable">
+        <div class="container">
+            <h2>Add Game</h2>
+            <form id="createGameForm">
+                <div class="form-group">
+                    <label for="gameTitle">Game Title:</label>
+                    <input type="text" id="gameTitle" name="gameTitle" required>
+                </div>
+                <div class="form-group">
+                    <label for="gameDescription">Game Description:</label>
+                    <input type="text" id="gameDescription" name="gameDescription" required>
+                </div>
+                <div class="form-group">
+                    <label for="gamePrice">Game Price:</label>
+                    <input type="number" id="gamePrice" name="gamePrice" min="0" step="0.01" required>
+                </div>
+                <div class="form-group">
+                    <label for="gameQuantity">Game Quantity:</label>
+                    <input type="number" id="gameQuantity" name="gameQuantity" min="0" required>
+                </div>
+                <button type="submit">Create</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Game Haven. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

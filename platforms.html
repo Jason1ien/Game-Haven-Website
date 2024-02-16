@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Game Haven</title>
+    <title>Game Haven - Platforms</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
         <div class="container">
-            <h1>Game Haven</h1>
+            <h1>Game Haven Admin</h1>
             <nav>
                 <ul>
                     <li><a href="index.html">Home</a></li>
@@ -26,11 +26,16 @@
         </div>
     </header>
 
-    <section class="hero">
+    <section class="inputTable">
         <div class="container">
-            <h2>Welcome to Game Haven</h2>
-            <p>Your ultimate destination for all things gaming!</p>
-            <button>Explore Now</button>
+            <h2>Add Platform</h2>
+            <form id="createGameForm">
+                <div class="form-group">
+                    <label for="gameTitle">Platform Name:</label>
+                    <input type="text" id="gameTitle" name="gameTitle" required>
+                </div>
+                <button type="submit">Create</button>
+            </form>
         </div>
     </section>
 
