@@ -28,6 +28,39 @@
       </div>
     </header>
 
+    <section class="sampleData">
+      <div class="container">
+          <h2>Sample Customer Data</h2>
+          <table>
+              <thead>
+                  <tr>
+                      <th>orderId</th>
+                      <th>gameId</th>
+                      <th>quantity</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr>
+                      <td>1</td>
+                      <td>1</td>
+                      <td>2</td>
+                  </tr>
+                  <tr>
+                      <td>2</td>
+                      <td>3</td>
+                      <td>1</td>
+                  </tr>
+                  <tr>
+                      <td>3</td>
+                      <td>2</td>
+                      <td>3</td>
+                  </tr>
+                  <!-- More sample data can be added here -->
+              </tbody>
+          </table>
+      </div>
+  </section>
+
     <section class="inputTable">
       <div class="container">
         <h2>Add New Order Details</h2>
@@ -41,12 +74,24 @@
       </div>
     </section>
 
-    <section class="order-details">
+
+    <section class="inputTable">
       <div class="container">
-        <h2>Order Details</h2>
-        <p>This page allows admins to manage order details in the database.</p>
+          <h2>Update Customer Information</h2>
+          <form id="updateCustomersForm">
+              <div class="form-group">
+                  <label for="selectCustomer">Select order ID:</label>
+                  <select id="selectCustomer" name="selectCustomer">
+                      <option value="orderId1">1</option>
+                      <option value="orderId2">2</option>
+                      <option value="orderId3">3</option>
+                      <!-- Add more options for each customer -->
+                  </select>
+              </div>
+              <button type="submit">Delete</button>
+          </form>
       </div>
-    </section>
+  </section>
 
     <footer>
       <div class="container">

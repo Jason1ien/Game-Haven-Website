@@ -26,36 +26,41 @@
         </div>
     </header>
 
+
     <section class="sampleData">
         <div class="container">
             <h2>Sample Customer Data</h2>
             <table>
                 <thead>
                     <tr>
-                        <th>gameTitle</th>
-                        <th>gameDescription</th>
-                        <th>gamePrice</th>
-                        <th>gameQuantity</th>
+                        <th>Email</th>
+                        <th>Password</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Address</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>Cars 3</td>
-                        <td>Cars from disney</td>
-                        <td>60</td>
-                        <td>12</td>
+                        <td>bob@gmail.com</td>
+                        <td>oaswird@</td>
+                        <td>bob</td>
+                        <td>schafer</td>
+                        <td>1234 address street, city, state, zip</td>
                     </tr>
                     <tr>
-                        <td>Palworld</td>
-                        <td>Pokemon with pals</td>
-                        <td>40</td>
-                        <td>100</td>
+                        <td>alex@gmail.com</td>
+                        <td>strongpassword</td>
+                        <td>alex</td>
+                        <td>tran</td>
+                        <td>4321 house street, chicago, illinois, 11111</td>
                     </tr>
                     <tr>
-                        <td>Minecraft</td>
-                        <td>3d block survival adventure</td>
-                        <td>30</td>
-                        <td>250</td>
+                        <td>kevin@gmail.com</td>
+                        <td>extrastrong</td>
+                        <td>kevin</td>
+                        <td>bui</td>
+                        <td>1111 street street, portland, oregon, 97220</td>
                     </tr>
                     <!-- More sample data can be added here -->
                 </tbody>
@@ -65,23 +70,27 @@
 
     <section class="inputTable">
         <div class="container">
-            <h2>Add Game</h2>
-            <form id="createGameForm">
+            <h2>Add New Customer Information</h2>
+            <form id="createCustomerForm">
                 <div class="form-group">
-                    <label for="gameTitle">Game Title:</label>
-                    <input type="text" id="gameTitle" name="gameTitle" required>
+                    <label for="customerEmail">Email:</label>
+                    <input type="text" id="customerEmail" name="customerEmail" required>
                 </div>
                 <div class="form-group">
-                    <label for="gameDescription">Game Description:</label>
-                    <input type="text" id="gameDescription" name="gameDescription" required>
+                    <label for="customerPassword">Password:</label>
+                    <input type="text" id="customerPassword" name="customerPassword" required>
                 </div>
                 <div class="form-group">
-                    <label for="gamePrice">Game Price:</label>
-                    <input type="number" id="gamePrice" name="gamePrice" min="0" step="0.01" required>
+                    <label for="customerFirstName">First Name:</label>
+                    <input type="number" id="customerFirstName" name="customerFirstName" required>
                 </div>
                 <div class="form-group">
-                    <label for="gameQuantity">Game Quantity:</label>
-                    <input type="number" id="gameQuantity" name="gameQuantity" min="0" required>
+                    <label for="customerLastName">Last Name:</label>
+                    <input type="number" id="customerLastName" name="customerLastName" required>
+                </div>
+                <div class="form-group">
+                    <label for="customerAddress">Address:</label>
+                    <input type="number" id="customerAddress" name="customerAddress" required>
                 </div>
                 <button type="submit">Create</button>
             </form>
@@ -90,7 +99,7 @@
 
     <footer>
         <div class="container">
-            <p>&copy; 2024 Game Haven. All rights reserved.</p>
+            <p>&copy; 2024 Website Designed by Jason Lien, Timmy Le, Larry Nguyen</p>
         </div>
     </footer>
 </body>
