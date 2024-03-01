@@ -54,24 +54,24 @@
         </div>
     </section>
 
-    <section class="inputTable">
+<section class="inputTable">
         <div class="container">
             <h2>Add New Order Details</h2>
-            <form id="createCustomerForm">
+            <form id="createOrderDetailsForm" method="POST" action="/createOrderDetailsForm">
 
                 <div class="form-group">
-                    <label for="quanity">orderId:</label>
-                    <input type="number" id="quantity" name="quantity" required />
+                    <label for="addOrderIdLabel">orderId:</label>
+                    <input type="number" id="addOrderId" name="addOrderId" required />
                 </div>
 
                 <div class="form-group">
-                    <label for="quanity">gameId:</label>
-                    <input type="number" id="gameId" name="gameId" required />
+                    <label for="addGameIdLabel">gameId:</label>
+                    <input type="number" id="addGameId" name="addGameId" required />
                 </div>
 
                 <div class="form-group">
-                    <label for="quanity">Quantity:</label>
-                    <input type="number" id="quantity" name="quantity" required />
+                    <label for="addQuantityLabel">Quantity:</label>
+                    <input type="number" id="addQuantity" name="addQuantity" required />
                 </div>
 
                 <button type="submit">Create</button>
@@ -79,45 +79,23 @@
         </div>
     </section>
 
-        <section class="inputTable">
-        <div class="container">
-            <h2>Update Order Details</h2>
-            <form id="createCustomerForm">
-
-                <div class="form-group">
-                    <label for="updateOrderIdLabel">orderId:</label>
-                    <input type="number" id="updateOrderId" name="updateOrderId" required />
-                </div>
-
-                <div class="form-group">
-                    <label for="updateGameIdLabel">gameId:</label>
-                    <input type="number" id="updateGameId" name="updateGameId" required />
-                </div>
-
-                <button type="submit">Update</button>
-            </form>
-        </div>
-    </section>
-
     <section class="inputTable">
         <div class="container">
             <h2>Delete Order Details</h2>
-            <form id="updateCustomersForm">
-
+            <form id="deleteCustomersForm">
                 <div class="form-group">
-                    <label for="deleteOrderIdLabel">orderId:</label>
-                    <input type="number" id="deleteOrderId" name="deleteOrderId" required />
+                    <label for="selectCustomer">Select order ID:</label>
+                    <select id="selectCustomer" name="selectCustomer">
+                        {{#each data}}
+                        <option value="{{this.orderId}}">{{this.orderId}}</option>
+                        {{/each}}
+                    </select>
                 </div>
-
-                <div class="form-group">
-                    <label for="deleteGameIdLabel">gameId:</label>
-                    <input type="number" id="deleteGameId" name="deleteGameId" required />
-                </div>
-
-                <button type="submit">Delete</button>
+                <td><button id="delete-orderDetails-btn" type="button">Delete</button></td>
             </form>
         </div>
     </section>
+    </form>
 
     <footer>
         <div class="container">
@@ -127,8 +105,9 @@
         </div>
     </footer>
 
- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script src="app.js"></script> 
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="app.js"></script>
+    <script src="orderDetails.js"></script>
 
 </body>
 
