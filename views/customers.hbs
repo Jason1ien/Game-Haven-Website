@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Haven - Customers</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Game Haven Admin</h1>
+            <nav>
+                <ul>
+                    <li><a href="/index">Home</a></li>
+                    <li><a href="/customers">Customers</a></li>
+                    <li><a href="/orders">Orders</a></li>
+                    <li><a href="/orderdetails">Order Details</a></li>
+                    <li><a href="/games">Games</a></li>
+                    <li><a href="/platforms">Platforms</a></li>
+                    <li><a href="/genres">Genres</a></li>
+                    <li><a href="/gameplatforms">Game Platforms</a></li>
+                    <li><a href="/gamegenres">Game Genres</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+
+    <section class="sampleData">
+        <div class="container">
+            <h2>Customers Data</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Email</th>
+                        <th>Password</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Address</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>bob@gmail.com</td>
+                        <td>oaswird@</td>
+                        <td>bob</td>
+                        <td>schafer</td>
+                        <td>1234 address street, city, state, zip</td>
+                    </tr>
+                    <tr>
+                        <td>alex@gmail.com</td>
+                        <td>strongpassword</td>
+                        <td>alex</td>
+                        <td>tran</td>
+                        <td>4321 house street, chicago, illinois, 11111</td>
+                    </tr>
+                    <tr>
+                        <td>kevin@gmail.com</td>
+                        <td>extrastrong</td>
+                        <td>kevin</td>
+                        <td>bui</td>
+                        <td>1111 street street, portland, oregon, 97220</td>
+                    </tr>
+                    <!-- More sample data can be added here -->
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section class="inputTable">
+        <div class="container">
+            <h2>Add New Customer Information</h2>
+            <form id="createCustomerForm">
+                <div class="form-group">
+                    <label for="customerEmail">Email:</label>
+                    <input type="text" id="customerEmail" name="customerEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="customerPassword">Password:</label>
+                    <input type="text" id="customerPassword" name="customerPassword" required>
+                </div>
+                <div class="form-group">
+                    <label for="customerFirstName">First Name:</label>
+                    <input type="number" id="customerFirstName" name="customerFirstName" required>
+                </div>
+                <div class="form-group">
+                    <label for="customerLastName">Last Name:</label>
+                    <input type="number" id="customerLastName" name="customerLastName" required>
+                </div>
+                <div class="form-group">
+                    <label for="customerAddress">Address:</label>
+                    <input type="number" id="customerAddress" name="customerAddress" required>
+                </div>
+                <button type="submit">Create</button>
+            </form>
+        </div>
+    </section>
+
+    
+    <section class="inputTable">
+        <div class="container">
+            <h2>Update Customer Information</h2>
+            <form id="updateCustomersForm">
+                <div class="form-group">
+                    <label for="selectCustomer">Select Customer:</label>
+                    <select id="selectCustomer" name="selectCustomer">
+                        <option value="customer1">Customer 1</option>
+                        <option value="customer2">Customer 2</option>
+                        <option value="customer3">Customer 3</option>
+                        <!-- Add more options for each customer -->
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="updateEmail">Email:</label>
+                    <input type="text" id="updateEmail" name="updateEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="updatePassword">Password:</label>
+                    <input type="text" id="updatePassword" name="updatePassword" required>
+                </div>
+                <div class="form-group">
+                    <label for="updateFirstName">First Name:</label>
+                    <input type="text" id="updateFirstName" name="updateFirstName" required>
+                </div>
+                <div class="form-group">
+                    <label for="updateLastName">Last Name:</label>
+                    <input type="text" id="updateLastName" name="updateLastName" required>
+                </div>
+                <div class="form-group">
+                    <label for="updateAddress">Address:</label>
+                    <input type="text" id="updateAddress" name="updateAddress" required>
+                </div>
+                <button type="submit">Update</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Website Designed by Jason Lien, Timmy Le, Larry Nguyen</p>
+        </div>
+    </footer>
+</body>
+</html>

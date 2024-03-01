@@ -1,0 +1,102 @@
+<!-- @format -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Game Haven - Order Details</title>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <h1>Game Haven Admin</h1>
+            <nav>
+                <ul>
+                    <li><a href="/index">Home</a></li>
+                    <li><a href="/customers">Customers</a></li>
+                    <li><a href="/orders">Orders</a></li>
+                    <li><a href="/orderdetails">Order Details</a></li>
+                    <li><a href="/games">Games</a></li>
+                    <li><a href="/platforms">Platforms</a></li>
+                    <li><a href="/genres">Genres</a></li>
+                    <li><a href="/gameplatforms">Game Platforms</a></li>
+                    <li><a href="/gamegenres">Game Genres</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section>
+        <div class="container">
+            <h2>Order Details</h2>
+            <table id="orderDetailsTable">
+                <thead>
+                    <tr>
+                        <th>Order ID</th>
+                        <th>Game ID</th>
+                        <th>Quantity</th>
+                    </tr>
+                </thead>
+                <tbody id="orderDetailsTableBody">
+                    {{#each data}}
+                    <tr>
+                        <td align="middle">{{this.orderId}}</td>
+                        <td align="middle">{{this.gameId}}</td>
+                        <td align="middle">{{this.quantity}}</td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section class="inputTable">
+        <div class="container">
+            <h2>Add New Order Details</h2>
+            <form id="createCustomerForm">
+                <div class="form-group">
+                    <label for="quanity">Quanity:</label>
+                    <input type="number" id="quantity" name="quantity" required />
+                </div>
+                <button type="submit">Create</button>
+            </form>
+        </div>
+    </section>
+
+
+    <section class="inputTable">
+        <div class="container">
+            <h2>Delete Order Details</h2>
+            <form id="updateCustomersForm">
+                <div class="form-group">
+                    <label for="selectCustomer">Select order ID:</label>
+                    <select id="selectCustomer" name="selectCustomer">
+                        <option value="orderId1">1</option>
+                        <option value="orderId2">2</option>
+                        <option value="orderId3">3</option>
+                        <!-- Add more options for each customer -->
+                    </select>
+                </div>
+                <button type="submit">Delete</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>
+                &copy; 2024 Website Designed by Jason Lien, Timmy Le, Larry Nguyen
+            </p>
+        </div>
+    </footer>
+
+ <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="app.js"></script> 
+
+</body>
+
+</html>
