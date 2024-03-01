@@ -38,40 +38,7 @@ app.get('/orderdetails', function (req, res) {
     });
 });
 
-/*
-app.post('/OrderDetailsAddPost', function (req, res) {
-    let orderId = req.body.orderId;
-    let gameId = req.body.gameId;
-    let quantity = req.body.quantity;
-
-    let query = "INSERT INTO OrderDetails (orderId, gameId, quantity) VALUES (?, ?, ?);";
-    let values = [orderId, gameId, quantity];
-
-    db.pool.query(query, values, function (error, result) {
-        if (error) {
-            res.status(500).send('Error adding OrderDetails');
-            console.log(error)
-            return;
-        }
-        res.redirect('/orderdetails');
-    });
-})
-*/
-
-app.post("/OrderDetailsDeletePost", function (req, res) {
-    let orderId = req.body.orderId;
-    let query = "DELETE FROM OrderDetails WHERE orderID = ?;";
-    let values = [orderId];
-    db.pool.query(query, values, function (error, result) {
-        if (error) {
-            res.status(500).send("Server error");
-            console.log(error);
-            return;
-        }
-        res.redirect("/orderdetails");
-    });
-});
-
+// Create Function
 app.post('/createOrderDetailsForm', function(req, res) {
     let data = req.body;
 
@@ -96,48 +63,20 @@ app.post('/createOrderDetailsForm', function(req, res) {
     })
 })
 
-/*
-app.post('/add-orderDetails-form', function(req, res) {
-    // Capture the incoming data and parse it back to a JS object
-    let data = req.body;
-
-    query1 = 'UPDATE OrderDetails SET gameId = :gameId_from_dropdown WHERE orderId = :orderId_from_dropdown;';
-    db.pool.query(query1, function(error, rows, fields){
-
-        // Check to see if there was an error
+// Delete function
+app.post("/OrderDetailsDeletePost", function (req, res) {
+    let orderId = req.body.orderId;
+    let query = "DELETE FROM OrderDetails WHERE orderID = ?;";
+    let values = [orderId];
+    db.pool.query(query, values, function (error, result) {
         if (error) {
-
-            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
-            console.log(error)
-            res.sendStatus(400);
+            res.status(500).send("Server error");
+            console.log(error);
+            return;
         }
-
-        else
-        {
-            res.redirect('/security-codes-securities');
-        }
-    })
-})
-
-app.put('/put-orderdetails', function(req, res) {
-    let data = req.body
-
-    let quantity = parseInt(data['input-quantity'])
-
-    let queryUpdateOrderDetails = 'UPDATE OrderDetails SET gameId = :gameId_from_dropdown WHERE orderId = :orderId_from_dropdown;'
-
-    // Run the query
-    db.pool.query(queryUpdateOrderDetails, [quantity], function(error, result) {
-        if (error) {
-            console.error('Error updating orderDetails:', error);
-            res.sendStatus(500);
-        } else {
-            // Send HTTP response indicating success
-            res.sendStatus(200);
-        }
+        res.redirect("/orderdetails");
     });
-})
-*/
+});
 
 app.get('/orders', function (req, res) {
     query1 = 'SELECT * FROM OrderDetails order by orderDetailId asc;';
