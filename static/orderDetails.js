@@ -1,4 +1,4 @@
-const baseUrl = `http://localhost:8719`;
+const baseUrl = `http://flip3.engr.oregonstate.edu:8719`;
 
 var addButton = document.getElementById('add-orderDetails-btn');
 var editButton = document.getElementById('edit-orderDetails-btn');
