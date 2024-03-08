@@ -131,6 +131,8 @@ app.get('/genres', function (req, res) {
 });
 
 app.get('/gameplatforms', function (req, res) {
+
+    
     var query1 = 'SELECT \
 gamePlatformId, \
 G.gameTitle, \
@@ -142,14 +144,25 @@ Games G ON GP.gameId = G.gameId \
 LEFT JOIN \
 Platforms P ON GP.platformId = P.platformId;'
 
+    var query2 = "SELECT * FROM Games;"
+    var query3 = "SELECT * FROM Platforms;"
+
     db.pool.query(query1, function (err, results, fields) {
         if (err) {
             console.error('Error retrieving order details:', err);
             res.status(500).send('Error retrieving order details');
             return;
         }
+        db.pool.query(query2, function(error, rows, fields){
 
-        res.render('gameplatforms', { data: results });
+            let games = rows;
+
+            db.pool.query(query3, (error, rows, fields) => {
+
+                let platforms = rows;
+                return res.render('gameplatforms', {data: results, games: games, platforms: platforms});
+            })
+        })
     });
 });
 
@@ -208,10 +221,10 @@ app.post('/createCustomerInfoForm', function(req, res) {
 app.post('/createOrderForm', function(req, res) {
     let data = req.body;
 
-    let customerId = data['customerId'];
+    let customerId = parseInt(data['this.customerId']);
     let orderDate = data['orderDate'];
     
-    query1 = `INSERT INTO Orders (customerId, orderDate) VALUES (${customerId}, ${orderDate});`
+    query1 = `INSERT INTO Orders (customerId, orderDate) VALUES ('${customerId}', '${orderDate}');`
 
     db.pool.query(query1, function(error, rows, fields) {
         // Check to see if there was an error
@@ -298,6 +311,53 @@ app.post('/createPlatformsForm', function(req, res) {
         else
         {
             res.redirect('/platforms');
+        }
+    })
+})
+
+app.post('/createNewGenre', function(req, res) {
+    let data = req.body;
+
+    let genreName = data['genreName'];
+
+    query1 = `INSERT INTO Genres (genreName) VALUES ('${genreName}');`
+
+    db.pool.query(query1, function(error, rows, fields) {
+        // Check to see if there was an error
+        if (error) {
+            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+            console.log(error)
+            res.sendStatus(400);
+        }
+        // If there was no error, we redirect back to our root route, which automatically runs the SELECT * FROM bsg_people and
+        // presents it on the screen
+        else
+        {
+            res.redirect('/genres');
+        }
+    })
+})
+
+app.post('/createGamePlatforms', function(req, res) {
+    let data = req.body;
+
+    let gameId = data['gameId']
+    let platformId = data['platformId']
+
+    query1 = `INSERT INTO GamePlatforms (gameId, platformId) VALUES (${gameId}, ${platformId})`
+
+    db.pool.query(query1, function(error, rows, fields) {
+        // Check to see if there was an error
+        if (error) {
+            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+            console.log(error)
+            res.sendStatus(400);
+        }
+        // If there was no error, we redirect back to our root route, which automatically runs the SELECT * FROM bsg_people and
+        // presents it on the screen
+        else
+        {
+            res.redirect('/gameplatforms');
         }
     })
 })
