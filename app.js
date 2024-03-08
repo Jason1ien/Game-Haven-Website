@@ -49,6 +49,8 @@ Orders O \
 JOIN \
 Customers C ON O.customerId = C.customerId;'
 
+    var query2 = 'select * from Customers'
+
     db.pool.query(query1, function (err, results, fields) {
         if (err) {
             console.error('Error retrieving order details:', err);
@@ -56,7 +58,12 @@ Customers C ON O.customerId = C.customerId;'
             return;
         }
 
-        res.render('orders', { data: results });
+        db.pool.query(query2, (error, rows, fields) => {
+            
+            // Save the planets
+            let customers = rows;
+            return res.render('orders', {data: results, customers: customers});
+        })
     });
 });
 
@@ -178,14 +185,25 @@ Games G ON GG.gameId = G.gameId \
 LEFT JOIN \
 Genres Ge ON GG.genreId = Ge.genreId;'
 
+    var query2 = "select * from Games;"
+    var query3 = "select * from Genres;"
+
     db.pool.query(query1, function (err, results, fields) {
         if (err) {
             console.error('Error retrieving order details:', err);
             res.status(500).send('Error retrieving order details');
             return;
         }
-
-        res.render('gamegenres', { data: results });
+        db.pool.query(query2, function(error, rows, fields){
+        
+            let games = rows;
+            
+            db.pool.query(query3, (error, rows, fields) => {
+                
+                let genres = rows;
+                return res.render('gamegenres', {data: results, games: games, genres: genres});
+            })
+        })
     });
 });
 
@@ -311,6 +329,29 @@ app.post('/createPlatformsForm', function(req, res) {
         else
         {
             res.redirect('/platforms');
+        }
+    })
+})
+
+app.post('/createGameGenresForm', function(req, res) {
+    let data = req.body;
+
+    let gameId = (data['addGameId']);
+    let genreId = (data['addGenreId']);
+    
+    query1 = `INSERT INTO GameGenres (gameId, genreId) VALUES ('${gameId}', '${genreId}')`;
+    db.pool.query(query1, function(error, rows, fields) {
+        // Check to see if there was an error
+        if (error) {
+            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+            console.log(error)
+            res.sendStatus(400);
+        }
+        // If there was no error, we redirect back to our root route, which automatically runs the SELECT * FROM bsg_people and
+        // presents it on the screen
+        else
+        {
+            res.redirect('/gamegenres');
         }
     })
 })

@@ -52,16 +52,27 @@
 
     <section class="inputTable">
         <div class="container">
-            <h2>Add Relationship</h2>
-            <form id="createRelationshipForm">
+            <h2>Add New Game Genres</h2>
+            <form id="createGameGenresForm" method="POST" action="/createGameGenresForm">
+
                 <div class="form-group">
-                    <label for="gameId">Input value for foreign key gameId: </label>
-                    <input type="number" id="gameId" name="gameId" required>
+                    <label for="gameId">Select Game ID:</label>
+                    <select id="addGameId" name="addGameId">
+                        {{#each games}}
+                            <option value="{{this.gameId}}">{{this.gameTitle}}</option>
+                        {{/each}}
+                    </select>
                 </div>
+
                 <div class="form-group">
-                    <label for="genreId">Input value for foreign key genreId: </label>
-                    <input type="number" id="genreId" name="genreId" required>
+                    <label for="genreId">Select Genre ID:</label>
+                    <select id="addGenreId" name="addGenreId">
+                        {{#each genres}}
+                            <option value="{{this.genreId}}">{{this.genreName}}</option>
+                        {{/each}}
+                    </select>
                 </div>
+
                 <button type="submit">Create</button>
             </form>
         </div>
