@@ -216,6 +216,146 @@ app.post("/OrderDetailsDeletePost", function (req, res) {
     });
 });
 
+
+app.post('/createCustomerInfoForm', function(req, res) {
+    let data = req.body;
+
+    let customerEmail = data['customerEmail'];
+    let customerPassword = data['customerPassword'];
+    let customerFirstName = data['customerFirstName'];
+    let customerLastName = data['customerLastName'];
+    let customerAddress = data['customerAddress'];
+    
+    query1 = `INSERT INTO Customers (customerEmail, customerPassword, customerFirstName, customerLastName, customerAddress) VALUES ('${customerEmail}', '${customerPassword}', '${customerFirstName}', '${customerLastName}', '${customerAddress}')`
+
+    db.pool.query(query1, function(error, rows, fields) {
+        // Check to see if there was an error
+        if (error) {
+            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+            console.log(error)
+            res.sendStatus(400);
+        }
+        // If there was no error, we redirect back to our root route, which automatically runs the SELECT * FROM bsg_people and
+        // presents it on the screen
+        else
+        {
+            res.redirect('/customers');
+        }
+    })
+})
+
+app.post('/createGameForm', function(req, res) {
+    let data = req.body;
+
+    let gameTitle = parseInt(data['gameTitle']);
+    let gameDescription = parseInt(data['gameDescription']);
+    let gamePrice = parseInt(data['gamePrice']);
+    let gameQuantity = parseInt(data['gameQuantity']);
+    
+    query1 = `INSERT INTO Games (gameTitle, gameDescription, gamePrice, gameQuantity) VALUES (${gameTitle}, ${gameDescription}, ${gamePrice}, ${gameQuantity})`
+
+    db.pool.query(query1, function(error, rows, fields) {
+        // Check to see if there was an error
+        if (error) {
+            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+            console.log(error)
+            res.sendStatus(400);
+        }
+        // If there was no error, we redirect back to our root route, which automatically runs the SELECT * FROM bsg_people and
+        // presents it on the screen
+        else
+        {
+            res.redirect('/games');
+        }
+    })
+})
+
+app.post('/createPlatformsForm', function(req, res) {
+    let data = req.body;
+
+    let platformName = parseInt(data['platformName']);
+
+    query1 = `INSERT INTO Platforms (platformName) VALUES (${platformName})`
+
+    db.pool.query(query1, function(error, rows, fields) {
+        // Check to see if there was an error
+        if (error) {
+            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+            console.log(error)
+            res.sendStatus(400);
+        }
+        // If there was no error, we redirect back to our root route, which automatically runs the SELECT * FROM bsg_people and
+        // presents it on the screen
+        else
+        {
+            res.redirect('/platforms');
+        }
+    })
+})
+
+app.get('/orders', function (req, res) {
+    query1 = 'SELECT * FROM OrderDetails order by orderDetailId asc;';
+
+    db.pool.query(query1, function (err, results, fields) {
+
+        res.render('orders', { data: results });
+    });
+});
+
+app.get('/gamegenres', function (req, res) {
+    query1 = 'SELECT * FROM OrderDetails order by orderDetailId asc;';
+
+    db.pool.query(query1, function (err, results, fields) {
+
+        res.render('gamegenres', { data: results });
+    });
+});
+
+app.get('/platforms', function (req, res) {
+    query1 = 'SELECT * FROM OrderDetails order by orderDetailId asc;';
+
+    db.pool.query(query1, function (err, results, fields) {
+
+        res.render('platforms', { data: results });
+    });
+});
+
+app.get('/games', function (req, res) {
+    query1 = 'SELECT * FROM OrderDetails order by orderDetailId asc;';
+
+    db.pool.query(query1, function (err, results, fields) {
+
+        res.render('games', { data: results });
+    });
+});
+
+
+app.get('/genres', function (req, res) {
+    query1 = 'SELECT * FROM OrderDetails order by orderDetailId asc;';
+
+    db.pool.query(query1, function (err, results, fields) {
+
+        res.render('genres', { data: results });
+    });
+});
+
+app.get('/gameplatforms', function (req, res) {
+    query1 = 'SELECT * FROM OrderDetails order by orderDetailId asc;';
+
+    db.pool.query(query1, function (err, results, fields) {
+
+        res.render('gameplatforms', { data: results });
+    });
+});
+
+app.get('/customers', function (req, res) {
+    query1 = 'SELECT * FROM OrderDetails order by orderDetailId asc;';
+
+    db.pool.query(query1, function (err, results, fields) {
+
+        res.render('customers', { data: results });
+    });
+});
 /*
     LISTENER
 */

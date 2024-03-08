@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Game Haven - Customers</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
     <header>
@@ -55,7 +55,7 @@
     <section class="inputTable">
         <div class="container">
             <h2>Add Game</h2>
-            <form id="createGameForm">
+            <form id="createGameForm" method="POST" action="/createGameForm">
                 <div class="form-group">
                     <label for="gameTitle">Game Title:</label>
                     <input type="text" id="gameTitle" name="gameTitle" required>
