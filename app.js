@@ -151,8 +151,8 @@ Games G ON GP.gameId = G.gameId \
 LEFT JOIN \
 Platforms P ON GP.platformId = P.platformId;'
 
-    var query2 = "SELECT * FROM Games;"
-    var query3 = "SELECT * FROM Platforms;"
+    var query2 = "select * FROM Games;"
+    var query3 = "select * FROM Platforms;"
 
     db.pool.query(query1, function (err, results, fields) {
         if (err) {
@@ -167,6 +167,7 @@ Platforms P ON GP.platformId = P.platformId;'
             db.pool.query(query3, (error, rows, fields) => {
 
                 let platforms = rows;
+
                 return res.render('gameplatforms', {data: results, games: games, platforms: platforms});
             })
         })
@@ -201,6 +202,7 @@ Genres Ge ON GG.genreId = Ge.genreId;'
             db.pool.query(query3, (error, rows, fields) => {
                 
                 let genres = rows;
+
                 return res.render('gamegenres', {data: results, games: games, genres: genres});
             })
         })
@@ -339,7 +341,8 @@ app.post('/createGameGenresForm', function(req, res) {
     let gameId = (data['addGameId']);
     let genreId = (data['addGenreId']);
     
-    query1 = `INSERT INTO GameGenres (gameId, genreId) VALUES ('${gameId}', '${genreId}')`;
+    query1 = `INSERT INTO GameGenres (gameId, genreId) VALUES ('${gameId}', '${genreId}');`
+
     db.pool.query(query1, function(error, rows, fields) {
         // Check to see if there was an error
         if (error) {
@@ -352,6 +355,31 @@ app.post('/createGameGenresForm', function(req, res) {
         else
         {
             res.redirect('/gamegenres');
+        }
+    })
+})
+
+
+app.post('/createGamePlatforms', function(req, res) {
+    let data = req.body;
+
+    let gameId = (data['addGameId2']);
+    let platformId = (data['addPlatformId2']);
+
+    query1 = `INSERT INTO GamePlatforms (gameId, platformId) VALUES ('${gameId}', '${platformId}');`
+
+    db.pool.query(query1, function(error, rows, fields) {
+        // Check to see if there was an error
+        if (error) {
+            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+            console.log(error)
+            res.sendStatus(400);
+        }
+        // If there was no error, we redirect back to our root route, which automatically runs the SELECT * FROM bsg_people and
+        // presents it on the screen
+        else
+        {
+            res.redirect('/gameplatforms');
         }
     })
 })
@@ -375,30 +403,6 @@ app.post('/createNewGenre', function(req, res) {
         else
         {
             res.redirect('/genres');
-        }
-    })
-})
-
-app.post('/createGamePlatforms', function(req, res) {
-    let data = req.body;
-
-    let gameId = data['gameId']
-    let platformId = data['platformId']
-
-    query1 = `INSERT INTO GamePlatforms (gameId, platformId) VALUES (${gameId}, ${platformId})`
-
-    db.pool.query(query1, function(error, rows, fields) {
-        // Check to see if there was an error
-        if (error) {
-            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
-            console.log(error)
-            res.sendStatus(400);
-        }
-        // If there was no error, we redirect back to our root route, which automatically runs the SELECT * FROM bsg_people and
-        // presents it on the screen
-        else
-        {
-            res.redirect('/gameplatforms');
         }
     })
 })
