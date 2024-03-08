@@ -252,7 +252,7 @@ app.post('/createCustomerInfoForm', function(req, res) {
 app.post('/createOrderForm', function(req, res) {
     let data = req.body;
 
-    let customerId = parseInt(data['this.customerId']);
+    let customerId = data['customerId'];
     let orderDate = data['orderDate'];
     
     query1 = `INSERT INTO Orders (customerId, orderDate) VALUES ('${customerId}', '${orderDate}');`
@@ -417,6 +417,28 @@ app.post('/createNewGenre', function(req, res) {
         }
     })
 })
+
+// Update Functions for Tables
+
+// Handle PUT request for updating order details
+app.put('/put-orderDetails-ajax', function(req, res) {
+    let data = req.body;
+
+    let orderDetailsID = data.orderDetailsID;
+    let quantity = data.quantity;
+    
+    let query = `UPDATE OrderDetails SET quantity = ${quantity} WHERE orderDetailId = ${orderDetailsID}`;
+
+    db.pool.query(query, function(error, result) {
+        if (error) {
+            console.error('Error updating order details:', error);
+            res.status(500).send('Error updating order details');
+            return;
+        }
+        // Send the updated data back to the client
+        res.json({ quantity: quantity });
+    });
+});
 
 // Delete Functions for Tables
 

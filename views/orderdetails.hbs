@@ -46,7 +46,7 @@
                 </thead>
                 <tbody id="orderDetailsTableBody">
                     {{#each data}}
-                    <tr>
+                    <tr data-value={{this.orderDetailId}}>
                         <td align="middle">{{this.orderDetailId}}</td>
                         <td align="middle">{{this.customerFirstName}}</td>
                         <td align="middle">{{this.customerLastName}}</td>
@@ -95,6 +95,27 @@
 
     <section class="inputTable">
         <div class="container">
+            <h2>Update Order Details</h2>
+            <form id="update-orderDetails-ajax" method="POST">
+                <div class="form-group">
+                    <label for="mySelect">Select Order Details ID:</label>
+                    <select id="mySelect" name="input-orderDetailsID">
+                        {{#each data}}
+                        <option value="{{this.orderDetailId}}">{{this.orderDetailId}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="input-quantity-update">Quantity:</label>
+                    <input type="number" name="input-quantity" id="input-quantity-update" required/>
+                </div>
+                <button type="submit">Update</button>
+            </form>
+        </div>
+    </section>
+
+    <section class="inputTable">
+        <div class="container">
             <h2>Delete Order Details</h2>
             <form id="deleteCustomersForm">
                 <div class="form-group">
@@ -120,7 +141,9 @@
     </footer>
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="app.js"></script>
     <script src="orderDetails.js"></script>
+    <script src="updateOrderDetails.js"></script>
 
 </body>
 
