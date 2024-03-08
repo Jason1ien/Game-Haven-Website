@@ -216,18 +216,17 @@ app.post("/OrderDetailsDeletePost", function (req, res) {
     });
 });
 
-<<<<<<< HEAD
 
 app.post('/createCustomerInfoForm', function(req, res) {
     let data = req.body;
 
-    let customerEmail = parseInt(data['customerEmail']);
-    let customerPassword = parseInt(data['customerPassword']);
-    let customerFirstName = parseInt(data['customerFirstName']);
-    let customerLastName = parseInt(data['customerLastName']);
-    let customerAddress = parseInt(data['customerAddress']);
+    let customerEmail = data['customerEmail'];
+    let customerPassword = data['customerPassword'];
+    let customerFirstName = data['customerFirstName'];
+    let customerLastName = data['customerLastName'];
+    let customerAddress = data['customerAddress'];
     
-    query1 = `INSERT INTO Customers (customerEmail, customerPassword, customerFirstName, customerLastName, customerAddress) VALUES (${customerEmail}, ${customerPassword}, ${customerFirstName}, ${customerLastName}, ${customerAddress})`
+    query1 = `INSERT INTO Customers (customerEmail, customerPassword, customerFirstName, customerLastName, customerAddress) VALUES ('${customerEmail}', '${customerPassword}', '${customerFirstName}', '${customerLastName}', '${customerAddress}')`
 
     db.pool.query(query1, function(error, rows, fields) {
         // Check to see if there was an error
@@ -357,8 +356,6 @@ app.get('/customers', function (req, res) {
         res.render('customers', { data: results });
     });
 });
-=======
->>>>>>> 37350acdb01ff4fee5c6a3e59a0f93b496f70643
 /*
     LISTENER
 */
