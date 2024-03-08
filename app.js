@@ -216,6 +216,7 @@ app.post("/OrderDetailsDeletePost", function (req, res) {
     });
 });
 
+<<<<<<< HEAD
 
 app.post('/createCustomerInfoForm', function(req, res) {
     let data = req.body;
@@ -356,6 +357,8 @@ app.get('/customers', function (req, res) {
         res.render('customers', { data: results });
     });
 });
+=======
+>>>>>>> 37350acdb01ff4fee5c6a3e59a0f93b496f70643
 /*
     LISTENER
 */
