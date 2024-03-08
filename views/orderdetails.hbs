@@ -66,13 +66,21 @@
             <form id="createOrderDetailsForm" method="POST" action="/createOrderDetailsForm">
 
                 <div class="form-group">
-                    <label for="addOrderIdLabel">orderId:</label>
-                    <input type="number" id="addOrderId" name="addOrderId" required />
+                    <label for="orderId">Select Order ID:</label>
+                    <select id="addOrderId" name="addOrderId">
+                        {{#each orders}}
+                            <option value="{{this.orderId}}">{{this.orderId}}</option>
+                        {{/each}}
+                    </select>
                 </div>
 
                 <div class="form-group">
-                    <label for="addGameIdLabel">gameId:</label>
-                    <input type="number" id="addGameId" name="addGameId" required />
+                    <label for="gameId">Select Game ID:</label>
+                    <select id="addGameId" name="addGameId">
+                        {{#each games}}
+                            <option value="{{this.gameId}}">{{this.gameTitle}}</option>
+                        {{/each}}
+                    </select>
                 </div>
 
                 <div class="form-group">
@@ -90,7 +98,7 @@
             <h2>Delete Order Details</h2>
             <form id="deleteCustomersForm">
                 <div class="form-group">
-                    <label for="selectCustomer">Select ID:</label>
+                    <label for="selectCustomer">Select Order Details ID:</label>
                     <select id="selectCustomer" name="selectCustomer">
                         {{#each data}}
                         <option value="{{this.orderDetailId}}">{{this.orderDetailId}}</option>
@@ -112,7 +120,6 @@
     </footer>
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script src="app.js"></script>
     <script src="orderDetails.js"></script>
 
 </body>

@@ -1,10 +1,11 @@
-const baseUrl = `http://flip3.engr.oregonstate.edu:8719`;
+// const baseUrl = `http://flip3.engr.oregonstate.edu:8719`;
+const baseUrl = `http://localhost:8719`;
 
 var addButton = document.getElementById('add-orderDetails-btn');
 var editButton = document.getElementById('edit-orderDetails-btn');
 var deleteOrderDetailsButton = document.getElementById('delete-orderDetails-btn');
 
-async function postDeleteOrderDetails(orderId) {
+async function postDeleteOrderDetails(orderDetailId) {
     try {
         const response = await fetch(`/OrderDetailsDeletePost`, {
             method: "POST",
@@ -12,7 +13,7 @@ async function postDeleteOrderDetails(orderId) {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                orderId: orderId,
+                orderDetailId: orderDetailId,
             }),
         }).then(
             async (response) => {
@@ -33,9 +34,9 @@ async function postDeleteOrderDetails(orderId) {
 
 deleteOrderDetailsButton.addEventListener('click', async function () {
 
-    let orderId = document.getElementById("selectCustomer").value;
+    let orderDetailId = document.getElementById("selectCustomer").value;
 
-    await postDeleteOrderDetails(orderId)
+    await postDeleteOrderDetails(orderDetailId)
 
 })
 

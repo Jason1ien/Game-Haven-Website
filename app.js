@@ -84,6 +84,9 @@ Customers C ON O.customerId = C.customerId \
 LEFT JOIN \
 Games G ON OD.gameId = G.gameId;'
 
+    var query2 = 'select * from Orders'
+    var query3 = 'select * from Games'
+
     db.pool.query(query1, function (err, results, fields) {
         if (err) {
             console.error('Error retrieving order details:', err);
@@ -91,7 +94,15 @@ Games G ON OD.gameId = G.gameId;'
             return;
         }
 
-        res.render('orderdetails', { data: results });
+        db.pool.query(query2, (error, rows, fields) => {
+            
+            let orders = rows;
+            db.pool.query(query3, (error, rows, fields) => {
+                
+                let games = rows;
+                return res.render('orderdetails', {data: results, orders: orders, games: games});
+            })
+        })
     });
 });
 
@@ -346,9 +357,9 @@ app.post('/createGameGenresForm', function(req, res) {
 // Delete Functions for Tables
 
 app.post("/OrderDetailsDeletePost", function (req, res) {
-    let orderId = req.body.orderId;
-    let query = "DELETE FROM OrderDetails WHERE orderID = ?;";
-    let values = [orderId];
+    let orderDetailId = req.body.orderDetailId;
+    let query = "DELETE FROM OrderDetails WHERE orderDetailId = ?;";
+    let values = [orderDetailId];
     db.pool.query(query, values, function (error, result) {
         if (error) {
             res.status(500).send("Server error");

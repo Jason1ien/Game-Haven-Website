@@ -89,14 +89,20 @@ LEFT JOIN
 
 -- dropdown get statements --------------------------------
 
--- select dropdown for Customers
-SELECT customerFirstName FROM Customers order by customerId asc;
+-- select customerId dropdown 
+select * from Customers
 
--- select orderId dropdown for OrderDetails/Orders
-SELECT orderId FROM Orders order by orderId asc;
+-- select orderId dropdown 
+select * from Orders
 
--- select gameId dropdown for OrderDetails
-SELECT gameId FROM Games order by gameId asc;
+-- select gameId dropdown 
+select * from Games
+
+-- select genreId dropdown
+select * from Genres
+
+-- select platformId dropdown
+select * from Platforms
 
 -----------------------------------------------------------
 
@@ -136,15 +142,11 @@ INSERT INTO OrderDetails (orderId, gameId, quantity)
 
 ------------------------------------------------------------
 
--- update customer info
-UPDATE Customers SET customerEmail = :customerEmail, customerPassword = :customerPassword, customerFirstName = :customerFirstName,
- customerLastName = :customerLastName, customerAddress = :customerAddress WHERE customerId = :customerId;
-
 -- update orders (nullable relationship)
 UPDATE Orders SET customerId = NULL WHERE orderId = :orderId;
 
 -- update an order to exchange a game for another game (M-to-M relationship update)
-UPDATE OrderDetails SET gameId = :gameId_from_dropdown WHERE orderId = :orderId_from_dropdown;
+UPDATE OrderDetails SET gameId = :gameId_from_dropdown, quantity = :quantity WHERE orderId = :orderId_from_dropdown;
 
 -- dis-associate a game from an order (M-to-M relationship deletion)
 DELETE FROM OrderDetails WHERE orderDetailId;
