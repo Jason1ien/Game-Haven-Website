@@ -62,9 +62,9 @@
             <form id="createOrderForm" method="POST" action="/createOrderForm">
 
                 <div class="form-group">
-                    <label for="selectCustomerFirst">Select Customer:</label>
-                    <select id="selectCustomerFirst" name="selectCustomerFirst">
-                        {{#each data}}
+                    <label for="customerId">Select Customer:</label>
+                    <select id="customerId" name="customerId">
+                        {{#each customers}}
                             <option value="{{this.customerId}}">{{this.customerFirstName}} {{this.customerLastName}}</option>
                         {{/each}}
                     </select>
