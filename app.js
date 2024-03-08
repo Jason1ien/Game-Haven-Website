@@ -24,8 +24,58 @@ app.get('/index', function (req, res) {
     res.render('index');
 });
 
+app.get('/customers', function (req, res) {
+    var query1 = 'select * from Customers order by customerId asc;'
+
+    db.pool.query(query1, function (err, results, fields) {
+        if (err) {
+            console.error('Error retrieving order details:', err);
+            res.status(500).send('Error retrieving order details');
+            return;
+        }
+
+        res.render('customers', { data: results });
+    });
+});
+
+app.get('/orders', function (req, res) {
+    var query1 = 'SELECT \
+orderId, \
+C.customerFirstName, \
+C.customerLastName, \
+O.orderDate \
+FROM \
+Orders O \
+JOIN \
+Customers C ON O.customerId = C.customerId;'
+
+    db.pool.query(query1, function (err, results, fields) {
+        if (err) {
+            console.error('Error retrieving order details:', err);
+            res.status(500).send('Error retrieving order details');
+            return;
+        }
+
+        res.render('orders', { data: results });
+    });
+});
+
 app.get('/orderdetails', function (req, res) {
-    var query1 = 'SELECT * FROM OrderDetails order by orderDetailId asc;';
+    var query1 = 'SELECT \
+orderDetailId, \
+C.customerFirstName, \
+C.customerLastName, \
+O.orderDate, \
+G.gameTitle, \
+OD.quantity \
+FROM \
+OrderDetails OD \
+LEFT JOIN \
+Orders O ON OD.orderId = O.orderId \
+LEFT JOIN \
+Customers C ON O.customerId = C.customerId \
+LEFT JOIN \
+Games G ON OD.gameId = G.gameId;'
 
     db.pool.query(query1, function (err, results, fields) {
         if (err) {
@@ -35,6 +85,94 @@ app.get('/orderdetails', function (req, res) {
         }
 
         res.render('orderdetails', { data: results });
+    });
+});
+
+app.get('/games', function (req, res) {
+    var query1 = 'SELECT * FROM Games order by gameId asc;'
+
+    db.pool.query(query1, function (err, results, fields) {
+        if (err) {
+            console.error('Error retrieving order details:', err);
+            res.status(500).send('Error retrieving order details');
+            return;
+        }
+
+        res.render('games', { data: results });
+    });
+});
+
+app.get('/platforms', function (req, res) {
+    var query1 = 'select * from Platforms order by platformId asc;'
+
+    db.pool.query(query1, function (err, results, fields) {
+        if (err) {
+            console.error('Error retrieving order details:', err);
+            res.status(500).send('Error retrieving order details');
+            return;
+        }
+
+        res.render('platforms', { data: results });
+    });
+});
+
+app.get('/genres', function (req, res) {
+    var query1 = 'SELECT * FROM Genres order by genreId asc;'
+
+    db.pool.query(query1, function (err, results, fields) {
+        if (err) {
+            console.error('Error retrieving order details:', err);
+            res.status(500).send('Error retrieving order details');
+            return;
+        }
+
+        res.render('genres', { data: results });
+    });
+});
+
+app.get('/gameplatforms', function (req, res) {
+    var query1 = 'SELECT \
+gamePlatformId, \
+G.gameTitle, \
+P.platformName \
+FROM \
+GamePlatforms GP \
+LEFT JOIN \
+Games G ON GP.gameId = G.gameId \
+LEFT JOIN \
+Platforms P ON GP.platformId = P.platformId;'
+
+    db.pool.query(query1, function (err, results, fields) {
+        if (err) {
+            console.error('Error retrieving order details:', err);
+            res.status(500).send('Error retrieving order details');
+            return;
+        }
+
+        res.render('gameplatforms', { data: results });
+    });
+});
+
+app.get('/gamegenres', function (req, res) {
+    var query1 = 'SELECT \
+gameGenreId, \
+G.gameTitle, \
+Ge.genreName \
+FROM \
+GameGenres GG \
+LEFT JOIN \
+Games G ON GG.gameId = G.gameId \
+LEFT JOIN \
+Genres Ge ON GG.genreId = Ge.genreId;'
+
+    db.pool.query(query1, function (err, results, fields) {
+        if (err) {
+            console.error('Error retrieving order details:', err);
+            res.status(500).send('Error retrieving order details');
+            return;
+        }
+
+        res.render('gamegenres', { data: results });
     });
 });
 
