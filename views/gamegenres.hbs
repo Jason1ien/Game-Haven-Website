@@ -26,30 +26,25 @@
         </div>
     </header>
 
-    <section class="sampleData">
+    <section>
         <div class="container">
-            <h2>gameGenres Data</h2>
-            <table>
+            <h2>Game Genre Data</h2>
+            <table id="platformTable">
                 <thead>
                     <tr>
-                        <th>gameId</th>
-                        <th>genreId</th>
+                        <th>ID</th>
+                        <th>Game</th>
+                        <th>Genre</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="platformTableBody">
+                    {{#each data}}
                     <tr>
-                        <td>1</td>
-                        <td>1</td>
+                        <td align="middle">{{this.gameGenreId}}</td>
+                        <td align="middle">{{this.gameTitle}}</td>
+                        <td align="middle">{{this.genreName}}</td>
                     </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>2</td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>3</td>
-                    </tr>
-                    <!-- More sample data can be added here -->
+                    {{/each}}
                 </tbody>
             </table>
         </div>

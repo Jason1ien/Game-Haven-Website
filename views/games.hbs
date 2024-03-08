@@ -26,38 +26,27 @@
         </div>
     </header>
 
-    <section class="sampleData">
+    <section>
         <div class="container">
-            <h2>Games Data</h2>
-            <table>
+            <h2>Game Data</h2>
+            <table id="gameTable">
                 <thead>
                     <tr>
-                        <th>gameTitle</th>
-                        <th>gameDescription</th>
-                        <th>gamePrice</th>
-                        <th>gameQuantity</th>
+                        <th>ID</th>
+                        <th>Description</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="gameTableBody">
+                    {{#each data}}
                     <tr>
-                        <td>Cars 3</td>
-                        <td>Cars from disney</td>
-                        <td>60</td>
-                        <td>12</td>
+                        <td align="middle">{{this.gameId}}</td>
+                        <td align="middle">{{this.gameDescription}}</td>
+                        <td align="middle">{{this.gamePrice}}</td>
+                        <td align="middle">{{this.gameQuantity}}</td>
                     </tr>
-                    <tr>
-                        <td>Palworld</td>
-                        <td>Pokemon with pals</td>
-                        <td>40</td>
-                        <td>100</td>
-                    </tr>
-                    <tr>
-                        <td>Minecraft</td>
-                        <td>3d block survival adventure</td>
-                        <td>30</td>
-                        <td>250</td>
-                    </tr>
-                    <!-- More sample data can be added here -->
+                    {{/each}}
                 </tbody>
             </table>
         </div>

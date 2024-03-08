@@ -27,12 +27,13 @@
     </header>
 
 
-    <section class="sampleData">
+    <section>
         <div class="container">
-            <h2>Customers Data</h2>
-            <table>
+            <h2>Customer Data</h2>
+            <table id="customerTable">
                 <thead>
                     <tr>
+                        <th>ID</th>
                         <th>Email</th>
                         <th>Password</th>
                         <th>First Name</th>
@@ -40,29 +41,17 @@
                         <th>Address</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="customerTableBody">
+                    {{#each data}}
                     <tr>
-                        <td>bob@gmail.com</td>
-                        <td>oaswird@</td>
-                        <td>bob</td>
-                        <td>schafer</td>
-                        <td>1234 address street, city, state, zip</td>
+                        <td align="middle">{{this.customerId}}</td>
+                        <td align="middle">{{this.customerEmail}}</td>
+                        <td align="middle">{{this.customerPassword}}</td>
+                        <td align="middle">{{this.customerFirstName}}</td>
+                        <td align="middle">{{this.customerLastName}}</td>
+                        <td align="middle">{{this.customerAddress}}</td>
                     </tr>
-                    <tr>
-                        <td>alex@gmail.com</td>
-                        <td>strongpassword</td>
-                        <td>alex</td>
-                        <td>tran</td>
-                        <td>4321 house street, chicago, illinois, 11111</td>
-                    </tr>
-                    <tr>
-                        <td>kevin@gmail.com</td>
-                        <td>extrastrong</td>
-                        <td>kevin</td>
-                        <td>bui</td>
-                        <td>1111 street street, portland, oregon, 97220</td>
-                    </tr>
-                    <!-- More sample data can be added here -->
+                    {{/each}}
                 </tbody>
             </table>
         </div>

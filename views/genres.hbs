@@ -26,26 +26,23 @@
         </div>
     </header>
 
-    <section class="sampleData">
+    <section>
         <div class="container">
-            <h2>Genres Data</h2>
-            <table>
+            <h2>Genre Data</h2>
+            <table id="genreTable">
                 <thead>
                     <tr>
-                        <th>genreName</th>
+                        <th>ID</th>
+                        <th>Genre Name</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="genreTableBody">
+                    {{#each data}}
                     <tr>
-                        <td>Action</td>
+                        <td align="middle">{{this.genreId}}</td>
+                        <td align="middle">{{this.genreName}}</td>
                     </tr>
-                    <tr>
-                        <td>Adventure</td>
-                    </tr>
-                    <tr>
-                        <td>Strategy</td>
-                    </tr>
-                    <!-- More sample data can be added here -->
+                    {{/each}}
                 </tbody>
             </table>
         </div>

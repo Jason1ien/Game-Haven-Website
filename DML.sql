@@ -35,6 +35,7 @@ SELECT * FROM OrderDetails order by orderDetailId asc;
 
 -- pretty print Orders Table
 SELECT 
+    orderId,
     C.customerFirstName,
     C.customerLastName,
     O.orderDate
@@ -45,6 +46,7 @@ JOIN
 
 -- pretty print OrderDetails Table
 SELECT 
+    orderDetailId,
     C.customerFirstName,
     C.customerLastName,
     O.orderDate,
@@ -61,6 +63,7 @@ LEFT JOIN
 
 -- pretty print GamePlatforms Table
 SELECT 
+    gamePlatformId, 
     G.gameTitle,
     P.platformName
 FROM 
@@ -72,6 +75,7 @@ LEFT JOIN
 
 -- pretty print GameGenres Table
 SELECT 
+    gameGenreId, 
     G.gameTitle,
     Ge.genreName
 FROM 
@@ -143,4 +147,4 @@ UPDATE Orders SET customerId = NULL WHERE orderId = :orderId;
 UPDATE OrderDetails SET gameId = :gameId_from_dropdown WHERE orderId = :orderId_from_dropdown;
 
 -- dis-associate a game from an order (M-to-M relationship deletion)
-DELETE FROM OrderDetails WHERE orderId = :orderId_selected_from_games_and_orders AND gameId = :gameId_selected_from_games_and_orders;
+DELETE FROM OrderDetails WHERE orderDetailId;

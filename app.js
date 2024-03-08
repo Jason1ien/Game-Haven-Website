@@ -24,8 +24,58 @@ app.get('/index', function (req, res) {
     res.render('index');
 });
 
+app.get('/customers', function (req, res) {
+    var query1 = 'select * from Customers order by customerId asc;'
+
+    db.pool.query(query1, function (err, results, fields) {
+        if (err) {
+            console.error('Error retrieving order details:', err);
+            res.status(500).send('Error retrieving order details');
+            return;
+        }
+
+        res.render('customers', { data: results });
+    });
+});
+
+app.get('/orders', function (req, res) {
+    var query1 = 'SELECT \
+orderId, \
+C.customerFirstName, \
+C.customerLastName, \
+O.orderDate \
+FROM \
+Orders O \
+JOIN \
+Customers C ON O.customerId = C.customerId;'
+
+    db.pool.query(query1, function (err, results, fields) {
+        if (err) {
+            console.error('Error retrieving order details:', err);
+            res.status(500).send('Error retrieving order details');
+            return;
+        }
+
+        res.render('orders', { data: results });
+    });
+});
+
 app.get('/orderdetails', function (req, res) {
-    var query1 = 'SELECT * FROM OrderDetails order by orderDetailId asc;';
+    var query1 = 'SELECT \
+orderDetailId, \
+C.customerFirstName, \
+C.customerLastName, \
+O.orderDate, \
+G.gameTitle, \
+OD.quantity \
+FROM \
+OrderDetails OD \
+LEFT JOIN \
+Orders O ON OD.orderId = O.orderId \
+LEFT JOIN \
+Customers C ON O.customerId = C.customerId \
+LEFT JOIN \
+Games G ON OD.gameId = G.gameId;'
 
     db.pool.query(query1, function (err, results, fields) {
         if (err) {
@@ -38,20 +88,95 @@ app.get('/orderdetails', function (req, res) {
     });
 });
 
-app.post("/OrderDetailsDeletePost", function (req, res) {
-    let orderId = req.body.orderId;
-    let query = "DELETE FROM OrderDetails WHERE orderID = ?;";
-    let values = [orderId];
-    db.pool.query(query, values, function (error, result) {
-        if (error) {
-            res.status(500).send("Server error");
-            console.log(error);
+app.get('/games', function (req, res) {
+    var query1 = 'SELECT * FROM Games order by gameId asc;'
+
+    db.pool.query(query1, function (err, results, fields) {
+        if (err) {
+            console.error('Error retrieving order details:', err);
+            res.status(500).send('Error retrieving order details');
             return;
         }
-        res.redirect("/orderdetails");
+
+        res.render('games', { data: results });
     });
 });
 
+app.get('/platforms', function (req, res) {
+    var query1 = 'select * from Platforms order by platformId asc;'
+
+    db.pool.query(query1, function (err, results, fields) {
+        if (err) {
+            console.error('Error retrieving order details:', err);
+            res.status(500).send('Error retrieving order details');
+            return;
+        }
+
+        res.render('platforms', { data: results });
+    });
+});
+
+app.get('/genres', function (req, res) {
+    var query1 = 'SELECT * FROM Genres order by genreId asc;'
+
+    db.pool.query(query1, function (err, results, fields) {
+        if (err) {
+            console.error('Error retrieving order details:', err);
+            res.status(500).send('Error retrieving order details');
+            return;
+        }
+
+        res.render('genres', { data: results });
+    });
+});
+
+app.get('/gameplatforms', function (req, res) {
+    var query1 = 'SELECT \
+gamePlatformId, \
+G.gameTitle, \
+P.platformName \
+FROM \
+GamePlatforms GP \
+LEFT JOIN \
+Games G ON GP.gameId = G.gameId \
+LEFT JOIN \
+Platforms P ON GP.platformId = P.platformId;'
+
+    db.pool.query(query1, function (err, results, fields) {
+        if (err) {
+            console.error('Error retrieving order details:', err);
+            res.status(500).send('Error retrieving order details');
+            return;
+        }
+
+        res.render('gameplatforms', { data: results });
+    });
+});
+
+app.get('/gamegenres', function (req, res) {
+    var query1 = 'SELECT \
+gameGenreId, \
+G.gameTitle, \
+Ge.genreName \
+FROM \
+GameGenres GG \
+LEFT JOIN \
+Games G ON GG.gameId = G.gameId \
+LEFT JOIN \
+Genres Ge ON GG.genreId = Ge.genreId;'
+
+    db.pool.query(query1, function (err, results, fields) {
+        if (err) {
+            console.error('Error retrieving order details:', err);
+            res.status(500).send('Error retrieving order details');
+            return;
+        }
+
+        res.render('gamegenres', { data: results });
+    });
+});
+
+// Create Function
 app.post('/createOrderDetailsForm', function(req, res) {
     let data = req.body;
 
@@ -152,48 +277,20 @@ app.post('/createPlatformsForm', function(req, res) {
     })
 })
 
-/*
-app.post('/add-orderDetails-form', function(req, res) {
-    // Capture the incoming data and parse it back to a JS object
-    let data = req.body;
-
-    query1 = 'UPDATE OrderDetails SET gameId = :gameId_from_dropdown WHERE orderId = :orderId_from_dropdown;';
-    db.pool.query(query1, function(error, rows, fields){
-
-        // Check to see if there was an error
+// Delete function
+app.post("/OrderDetailsDeletePost", function (req, res) {
+    let orderId = req.body.orderId;
+    let query = "DELETE FROM OrderDetails WHERE orderID = ?;";
+    let values = [orderId];
+    db.pool.query(query, values, function (error, result) {
         if (error) {
-
-            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
-            console.log(error)
-            res.sendStatus(400);
+            res.status(500).send("Server error");
+            console.log(error);
+            return;
         }
-
-        else
-        {
-            res.redirect('/security-codes-securities');
-        }
-    })
-})
-
-app.put('/put-orderdetails', function(req, res) {
-    let data = req.body
-
-    let quantity = parseInt(data['input-quantity'])
-
-    let queryUpdateOrderDetails = 'UPDATE OrderDetails SET gameId = :gameId_from_dropdown WHERE orderId = :orderId_from_dropdown;'
-
-    // Run the query
-    db.pool.query(queryUpdateOrderDetails, [quantity], function(error, result) {
-        if (error) {
-            console.error('Error updating orderDetails:', error);
-            res.sendStatus(500);
-        } else {
-            // Send HTTP response indicating success
-            res.sendStatus(200);
-        }
+        res.redirect("/orderdetails");
     });
-})
-*/
+});
 
 app.get('/orders', function (req, res) {
     query1 = 'SELECT * FROM OrderDetails order by orderDetailId asc;';
