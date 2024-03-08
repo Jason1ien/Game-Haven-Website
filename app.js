@@ -216,69 +216,6 @@ app.post("/OrderDetailsDeletePost", function (req, res) {
     });
 });
 
-app.get('/orders', function (req, res) {
-    query1 = 'SELECT * FROM OrderDetails order by orderDetailId asc;';
-
-    db.pool.query(query1, function (err, results, fields) {
-
-        res.render('orders', { data: results });
-    });
-});
-
-app.get('/gamegenres', function (req, res) {
-    query1 = 'SELECT * FROM OrderDetails order by orderDetailId asc;';
-
-    db.pool.query(query1, function (err, results, fields) {
-
-        res.render('gamegenres', { data: results });
-    });
-});
-
-app.get('/platforms', function (req, res) {
-    query1 = 'SELECT * FROM OrderDetails order by orderDetailId asc;';
-
-    db.pool.query(query1, function (err, results, fields) {
-
-        res.render('platforms', { data: results });
-    });
-});
-
-app.get('/games', function (req, res) {
-    query1 = 'SELECT * FROM OrderDetails order by orderDetailId asc;';
-
-    db.pool.query(query1, function (err, results, fields) {
-
-        res.render('games', { data: results });
-    });
-});
-
-
-app.get('/genres', function (req, res) {
-    query1 = 'SELECT * FROM OrderDetails order by orderDetailId asc;';
-
-    db.pool.query(query1, function (err, results, fields) {
-
-        res.render('genres', { data: results });
-    });
-});
-
-app.get('/gameplatforms', function (req, res) {
-    query1 = 'SELECT * FROM OrderDetails order by orderDetailId asc;';
-
-    db.pool.query(query1, function (err, results, fields) {
-
-        res.render('gameplatforms', { data: results });
-    });
-});
-
-app.get('/customers', function (req, res) {
-    query1 = 'SELECT * FROM OrderDetails order by orderDetailId asc;';
-
-    db.pool.query(query1, function (err, results, fields) {
-
-        res.render('customers', { data: results });
-    });
-});
 /*
     LISTENER
 */
