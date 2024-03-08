@@ -33,6 +33,7 @@
                 <thead>
                     <tr>
                         <th>ID</th>
+                        <th>Game</th>
                         <th>Description</th>
                         <th>Price</th>
                         <th>Quantity</th>
@@ -42,6 +43,7 @@
                     {{#each data}}
                     <tr>
                         <td align="middle">{{this.gameId}}</td>
+                        <td align="middle">{{this.gameTitle}}</td>
                         <td align="middle">{{this.gameDescription}}</td>
                         <td align="middle">{{this.gamePrice}}</td>
                         <td align="middle">{{this.gameQuantity}}</td>

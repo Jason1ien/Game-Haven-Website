@@ -90,10 +90,10 @@
             <h2>Delete Order Details</h2>
             <form id="deleteCustomersForm">
                 <div class="form-group">
-                    <label for="selectCustomer">Select order ID:</label>
+                    <label for="selectCustomer">Select ID:</label>
                     <select id="selectCustomer" name="selectCustomer">
                         {{#each data}}
-                        <option value="{{this.orderId}}">{{this.orderId}}</option>
+                        <option value="{{this.orderDetailId}}">{{this.orderDetailId}}</option>
                         {{/each}}
                     </select>
                 </div>
