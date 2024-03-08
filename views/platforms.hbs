@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Game Haven - Platforms</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
     <header>
@@ -54,7 +54,7 @@
     <section class="inputTable">
         <div class="container">
             <h2>Add Platform</h2>
-            <form id="platformsForm">
+            <form id="platformsForm" method="POST" action="/createPlatformsForm">
                 <div class="form-group">
                     <label for="platformName">Platform Name:</label>
                     <input type="text" id="platformName" name="platformName" required>

@@ -38,26 +38,6 @@ app.get('/orderdetails', function (req, res) {
     });
 });
 
-/*
-app.post('/OrderDetailsAddPost', function (req, res) {
-    let orderId = req.body.orderId;
-    let gameId = req.body.gameId;
-    let quantity = req.body.quantity;
-
-    let query = "INSERT INTO OrderDetails (orderId, gameId, quantity) VALUES (?, ?, ?);";
-    let values = [orderId, gameId, quantity];
-
-    db.pool.query(query, values, function (error, result) {
-        if (error) {
-            res.status(500).send('Error adding OrderDetails');
-            console.log(error)
-            return;
-        }
-        res.redirect('/orderdetails');
-    });
-})
-*/
-
 app.post("/OrderDetailsDeletePost", function (req, res) {
     let orderId = req.body.orderId;
     let query = "DELETE FROM OrderDetails WHERE orderID = ?;";
@@ -92,6 +72,82 @@ app.post('/createOrderDetailsForm', function(req, res) {
         else
         {
             res.redirect('/orderdetails');
+        }
+    })
+})
+
+app.post('/createCustomerInfoForm', function(req, res) {
+    let data = req.body;
+
+    let customerEmail = parseInt(data['customerEmail']);
+    let customerPassword = parseInt(data['customerPassword']);
+    let customerFirstName = parseInt(data['customerFirstName']);
+    let customerLastName = parseInt(data['customerLastName']);
+    let customerAddress = parseInt(data['customerAddress']);
+    
+    query1 = `INSERT INTO Customers (customerEmail, customerPassword, customerFirstName, customerLastName, customerAddress) VALUES (${customerEmail}, ${customerPassword}, ${customerFirstName}, ${customerLastName}, ${customerAddress})`
+
+    db.pool.query(query1, function(error, rows, fields) {
+        // Check to see if there was an error
+        if (error) {
+            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+            console.log(error)
+            res.sendStatus(400);
+        }
+        // If there was no error, we redirect back to our root route, which automatically runs the SELECT * FROM bsg_people and
+        // presents it on the screen
+        else
+        {
+            res.redirect('/customers');
+        }
+    })
+})
+
+app.post('/createGameForm', function(req, res) {
+    let data = req.body;
+
+    let gameTitle = parseInt(data['gameTitle']);
+    let gameDescription = parseInt(data['gameDescription']);
+    let gamePrice = parseInt(data['gamePrice']);
+    let gameQuantity = parseInt(data['gameQuantity']);
+    
+    query1 = `INSERT INTO Games (gameTitle, gameDescription, gamePrice, gameQuantity) VALUES (${gameTitle}, ${gameDescription}, ${gamePrice}, ${gameQuantity})`
+
+    db.pool.query(query1, function(error, rows, fields) {
+        // Check to see if there was an error
+        if (error) {
+            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+            console.log(error)
+            res.sendStatus(400);
+        }
+        // If there was no error, we redirect back to our root route, which automatically runs the SELECT * FROM bsg_people and
+        // presents it on the screen
+        else
+        {
+            res.redirect('/games');
+        }
+    })
+})
+
+app.post('/createPlatformsForm', function(req, res) {
+    let data = req.body;
+
+    let platformName = parseInt(data['platformName']);
+
+    query1 = `INSERT INTO Platforms (platformName) VALUES (${platformName})`
+
+    db.pool.query(query1, function(error, rows, fields) {
+        // Check to see if there was an error
+        if (error) {
+            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+            console.log(error)
+            res.sendStatus(400);
+        }
+        // If there was no error, we redirect back to our root route, which automatically runs the SELECT * FROM bsg_people and
+        // presents it on the screen
+        else
+        {
+            res.redirect('/platforms');
         }
     })
 })

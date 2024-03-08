@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Game Haven - Customers</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
     <header>
@@ -71,7 +71,7 @@
     <section class="inputTable">
         <div class="container">
             <h2>Add New Customer Information</h2>
-            <form id="createCustomerForm">
+            <form id="createCustomerForm" method="POST" action="/createCustomerInfoForm">
                 <div class="form-group">
                     <label for="customerEmail">Email:</label>
                     <input type="text" id="customerEmail" name="customerEmail" required>
@@ -141,5 +141,9 @@
             <p>&copy; 2024 Website Designed by Jason Lien, Timmy Le, Larry Nguyen</p>
         </div>
     </footer>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="app.js"></script>
+    <script src="customers.js"></script>
 </body>
 </html>
