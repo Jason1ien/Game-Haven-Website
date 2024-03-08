@@ -201,6 +201,22 @@ app.post('/createOrderDetailsForm', function(req, res) {
     })
 })
 
+// Delete function
+app.post("/OrderDetailsDeletePost", function (req, res) {
+    let orderId = req.body.orderId;
+    let query = "DELETE FROM OrderDetails WHERE orderID = ?;";
+    let values = [orderId];
+    db.pool.query(query, values, function (error, result) {
+        if (error) {
+            res.status(500).send("Server error");
+            console.log(error);
+            return;
+        }
+        res.redirect("/orderdetails");
+    });
+});
+
+
 app.post('/createCustomerInfoForm', function(req, res) {
     let data = req.body;
 
@@ -276,21 +292,6 @@ app.post('/createPlatformsForm', function(req, res) {
         }
     })
 })
-
-// Delete function
-app.post("/OrderDetailsDeletePost", function (req, res) {
-    let orderId = req.body.orderId;
-    let query = "DELETE FROM OrderDetails WHERE orderID = ?;";
-    let values = [orderId];
-    db.pool.query(query, values, function (error, result) {
-        if (error) {
-            res.status(500).send("Server error");
-            console.log(error);
-            return;
-        }
-        res.redirect("/orderdetails");
-    });
-});
 
 app.get('/orders', function (req, res) {
     query1 = 'SELECT * FROM OrderDetails order by orderDetailId asc;';
