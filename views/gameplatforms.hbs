@@ -55,7 +55,7 @@
             <h2>Add Relationship</h2>
             <form id="createRelationshipForm" method="POST" action="/createGamePlatforms">
                 <div class="form-group">
-                    <label for="gameId">Input value for foreign key gameId: </label>
+                    <label for="gameId">Select Game ID: </label>
                     <select id="addGameId2" name="addGameId2">
                         {{#each games}}
                             <option value="{{this.gameId}}">{{this.gameTitle}}</option>
@@ -63,7 +63,7 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="platformId">Input value for foreign key platformId: </label>
+                    <label for="platformId">Select Platform ID: </label>
                     <select id="addPlatformId2" name="addPlatformId2">
                         {{#each platforms}}
                             <option value="{{this.platformId}}">{{this.platformName}}</option>

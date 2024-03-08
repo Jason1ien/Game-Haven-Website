@@ -39,37 +39,3 @@ deleteOrderDetailsButton.addEventListener('click', async function () {
     await postDeleteOrderDetails(orderDetailId)
 
 })
-
-app.get('/gamegenres', function (req, res) {
-    var query1 = 'SELECT \
-gameGenreId, \
-G.gameTitle, \
-Ge.genreName \
-FROM \
-GameGenres GG \
-LEFT JOIN \
-Games G ON GG.gameId = G.gameId \
-LEFT JOIN \
-Genres Ge ON GG.genreId = Ge.genreId;'
-
-    var query2 = "select * from Games;"
-    var query3 = "select * from Genres;"
-
-    db.pool.query(query1, function (err, results, fields) {
-        if (err) {
-            console.error('Error retrieving order details:', err);
-            res.status(500).send('Error retrieving order details');
-            return;
-        }
-        db.pool.query(query2, function(error, rows, fields){
-
-            let games = rows;
-
-            db.pool.query(query3, (error, rows, fields) => {
-
-                let genres = rows;
-                return res.render('gamegenres', {data: results, games: games, genres: genres});
-            })
-        })
-    });
-});
