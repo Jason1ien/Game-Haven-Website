@@ -84,7 +84,17 @@ Customers C ON O.customerId = C.customerId \
 LEFT JOIN \
 Games G ON OD.gameId = G.gameId;'
 
-    var query2 = 'select * from Orders'
+    var query2 = 'SELECT \
+C.customerId, \
+C.customerFirstName, \
+C.customerLastName, \
+O.orderId, \
+O.orderDate \
+FROM \
+Customers C \
+INNER JOIN \
+Orders O ON C.customerId = O.customerId;'
+
     var query3 = 'select * from Games'
 
     db.pool.query(query1, function (err, results, fields) {

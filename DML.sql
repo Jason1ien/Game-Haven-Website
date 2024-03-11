@@ -89,6 +89,18 @@ LEFT JOIN
 
 -- dropdown get statements --------------------------------
 
+-- select orderId & customers
+SELECT
+    C.customerId,
+    C.customerFirstName,
+    C.customerLastName,
+    O.orderId,
+    O.orderDate
+FROM
+    Customers C
+INNER JOIN
+    Orders O ON C.customerId = O.customerId;
+
 -- select customerId dropdown 
 select * from Customers
 
