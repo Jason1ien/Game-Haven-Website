@@ -18,7 +18,7 @@ CREATE OR REPLACE TABLE Platforms (
     platformId int(11) NOT NULL AUTO_INCREMENT,
     platformName varchar(255) NOT NULL,
     PRIMARY KEY (platformId),
-    CONSTRAINT UNIQUE platformId (platformId)
+    CONSTRAINT UNIQUE (platformName)
 );
 
 -- Table 3
@@ -59,7 +59,7 @@ CREATE OR REPLACE TABLE Genres (
     genreId INT(11) NOT NULL AUTO_INCREMENT,
     genreName VARCHAR(255) NOT NULL,
     PRIMARY KEY (genreId),
-    CONSTRAINT UNIQUE genreId (genreId)
+    CONSTRAINT UNIQUE (genreName)
 );
 
 -- Table 7

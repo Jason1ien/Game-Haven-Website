@@ -230,6 +230,14 @@ Genres Ge ON GG.genreId = Ge.genreId;'
     });
 });
 
+app.get("/error", function (req, res) {
+    res.status(404).render("error");
+});
+
+app.get("*", function (req, res) {
+    res.status(404).render("404");
+});
+
 // Create Functions for Tables
 
 app.post('/createCustomerInfoForm', function(req, res) {
@@ -345,7 +353,7 @@ app.post('/createPlatformsForm', function(req, res) {
         if (error) {
             // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
             console.log(error)
-            res.sendStatus(400);
+            res.redirect('/error');
         }
         // If there was no error, we redirect back to our root route, which automatically runs the SELECT * FROM bsg_people and
         // presents it on the screen
@@ -417,7 +425,7 @@ app.post('/createNewGenre', function(req, res) {
         if (error) {
             // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
             console.log(error)
-            res.sendStatus(400);
+            res.redirect('/error');
         }
         // If there was no error, we redirect back to our root route, which automatically runs the SELECT * FROM bsg_people and
         // presents it on the screen
