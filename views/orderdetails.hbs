@@ -107,10 +107,33 @@
                         {{/each}}
                     </select>
                 </div>
+
+                <div class="form-group">
+                    <label for="orderId">Select Order ID:</label>
+                    <select id="updateOrderId" name="updateOrderId">
+                        {{#each orders}}
+                            <option value="{{this.orderId}}" title="{{this.orderDate}}">
+                                {{this.orderId}}: {{this.customerFirstName}} {{this.customerLastName}}
+                            </option>
+                        {{/each}}
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="gameId">Select Game ID:</label>
+                    <select id="updateGameId" name="updateGameId">
+                        {{#each games}}
+                            <option value="{{this.gameId}}">{{this.gameTitle}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+
+
                 <div class="form-group">
                     <label for="input-quantity-update">Quantity:</label>
                     <input type="number" name="input-quantity" id="input-quantity-update" required/>
                 </div>
+
                 <button type="submit">Update</button>
             </form>
         </div>

@@ -9,13 +9,19 @@ updateOrderDetailsForm.addEventListener("submit", async function (e) {
   e.preventDefault();
 
   let inputOrderDetailsID = document.getElementById("mySelect");
+  let inputOrder = document.getElementById("updateOrderId")
+  let inputGame = document.getElementById("updateGameId")
   let inputQuantity = document.getElementById("input-quantity-update");
 
   let orderDetailsIdValue = inputOrderDetailsID.value;
+  let inputOrderValue = inputOrder.value;
+  let inputGameValue = inputGame.value;
   let quantityValue = inputQuantity.value;
 
   let data = {
     orderDetailsID: orderDetailsIdValue,
+    orderId: inputOrderValue,
+    gameId: inputGameValue,
     quantity: quantityValue,
   };
 
@@ -32,7 +38,6 @@ updateOrderDetailsForm.addEventListener("submit", async function (e) {
     }
 
     const responseData = await response.json();
-    updateRow(responseData, orderDetailsIdValue);
 
     // Reload the page after the update is completed
     location.reload();
@@ -40,17 +45,3 @@ updateOrderDetailsForm.addEventListener("submit", async function (e) {
     console.error("Error:", error);
   }
 });
-
-function updateRow(data, orderDetailsID) {
-  let parsedData = data;
-  let table = document.getElementById("orderDetailsTableBody");
-
-  for (let i = 0; i < parsedData.length; i++) {
-    if (parsedData[i].orderDetailId == orderDetailsID) {
-      let updateRowIndex = table.rows[i];
-      let quantityTd = updateRowIndex.getElementsByTagName("td")[5]; // Assuming 5 is the index of Quantity column
-      quantityTd.innerText = parsedData[i].quantity;
-      break;
-    }
-  }
-}

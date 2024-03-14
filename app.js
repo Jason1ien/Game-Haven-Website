@@ -463,9 +463,11 @@ app.put('/put-orderDetails-ajax', function(req, res) {
     let data = req.body;
 
     let orderDetailsID = data.orderDetailsID;
+    let orderId = data.orderId;
+    let gameId = data.gameId;
     let quantity = data.quantity;
-    
-    let query = `UPDATE OrderDetails SET quantity = ${quantity} WHERE orderDetailId = ${orderDetailsID}`;
+
+    let query = `UPDATE OrderDetails SET orderId = ${orderId}, gameId = ${gameId}, quantity = ${quantity} WHERE orderDetailId = ${orderDetailsID}`;
 
     db.pool.query(query, function(error, result) {
         if (error) {
@@ -474,7 +476,7 @@ app.put('/put-orderDetails-ajax', function(req, res) {
             return;
         }
         // Send the updated data back to the client
-        res.json({ quantity: quantity });
+        res.json({ orderId: orderId, gameId: gameId, quantity: quantity });
     });
 });
 
