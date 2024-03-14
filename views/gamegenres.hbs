@@ -78,10 +78,29 @@
         </div>
     </section>
 
+    <section class="inputTable">
+        <div class="container">
+            <h2>Update Game Genre</h2>
+            <form id="update-game-genres-ajax" method="POST">
+                <div class="form-group">
+                    <label for="mySelect">Select Game Genres ID:</label>
+                    <select id="mySelect" name="input-gameGenresID">
+                        {{#each data}}
+                            <option value="{{this.gameGenreId}}">{{this.gameGenreId}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+                <button type="submit">Set Genre Null</button>
+            </form>
+        </div>
+    </section>
+
     <footer>
         <div class="container">
             <p>&copy; 2024 Website Designed by Jason Lien, Timmy Le, Larry Nguyen</p>
         </div>
     </footer>
+
+    <script src="updateGameGenres.js"></script>
 </body>
 </html>

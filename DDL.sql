@@ -47,7 +47,7 @@ CREATE OR REPLACE TABLE Customers (
 -- Table 5
 CREATE OR REPLACE TABLE Orders (
     orderId INT(11) NOT NULL AUTO_INCREMENT,
-    customerId INT(11) DEFAULT NULL, -- nulllable FK relationship
+    customerId INT(11) NOT NULL,
     orderDate DATETIME NOT NULL,
     PRIMARY KEY (orderId),
     FOREIGN KEY (customerId) REFERENCES Customers (customerId) ON DELETE CASCADE,
@@ -66,7 +66,7 @@ CREATE OR REPLACE TABLE Genres (
 CREATE OR REPLACE TABLE GameGenres (
     gameGenreId INT(11) NOT NULL AUTO_INCREMENT,
     gameId INT(11) NOT NULL,
-    genreId INT(11) NOT NULL,
+    genreId INT(11) DEFAULT NULL, -- nulllable FK relationship
     PRIMARY KEY (gameGenreId),
     FOREIGN KEY (gameId) REFERENCES Games (gameId) ON DELETE CASCADE,
     FOREIGN KEY (genreId) REFERENCES Genres (genreId) ON DELETE CASCADE,

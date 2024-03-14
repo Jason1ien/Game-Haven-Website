@@ -154,8 +154,8 @@ INSERT INTO OrderDetails (orderId, gameId, quantity)
 
 ------------------------------------------------------------
 
--- update orders (nullable relationship)
-UPDATE Orders SET customerId = NULL WHERE orderId = :orderId;
+-- update GameGenres (nullable relationship)
+UPDATE GameGenres SET genreId = NULL WHERE gameGenreId = :gameGenreId;
 
 -- update an order to exchange a game for another game (M-to-M relationship update)
 UPDATE OrderDetails SET gameId = :gameId_from_dropdown, quantity = :quantity WHERE orderId = :orderId_from_dropdown;

@@ -438,6 +438,26 @@ app.post('/createNewGenre', function(req, res) {
 
 // Update Functions for Tables
 
+// Handle PUT request for updating game genres (nullable fk)
+app.put('/put-game-genres-ajax', function(req, res) {
+    let data = req.body;
+
+    let gameGenreId = data.gameGenreId;
+    let genreId = data.genreId;
+
+    let query = `UPDATE GameGenres SET genreId = ${genreId} WHERE gameGenreId = ${gameGenreId};`;
+
+    db.pool.query(query, function(error, result) {
+        if (error) {
+            console.error('Error updating order:', error);
+            res.status(500).send('Error updating order');
+            return;
+        }
+        // Send the updated data back to the client
+        res.json({ genreId: genreId });
+    });
+});
+
 // Handle PUT request for updating order details
 app.put('/put-orderDetails-ajax', function(req, res) {
     let data = req.body;
