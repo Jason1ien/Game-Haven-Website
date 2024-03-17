@@ -1,3 +1,10 @@
+/* 
+Project Name: Game Haven
+Group Number: Team 155
+Team Name: SQL Squad
+Members: Jason Lien, Timmy Le, Larry Nguyen
+*/
+
 // Express
 var db = require('./db-connector')
 var express = require('express');
