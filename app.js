@@ -16,15 +16,20 @@ PORT = 8719;
 /*
     ROUTES
 */
+
+// retrieve home page
 app.get('/', function (req, res) {
     res.render('index');
 });
 
+// retrieve home page
 app.get('/index', function (req, res) {
     res.render('index');
 });
 
+// retrieve Customers page with table
 app.get('/customers', function (req, res) {
+    // print Customers table
     var query1 = 'select * from Customers order by customerId asc;'
 
     db.pool.query(query1, function (err, results, fields) {
@@ -38,7 +43,9 @@ app.get('/customers', function (req, res) {
     });
 });
 
+// retrieve Orders page with table
 app.get('/orders', function (req, res) {
+    // pretty print Orders Table without FK
     var query1 = 'SELECT \
 orderId, \
 C.customerFirstName, \
@@ -49,6 +56,7 @@ Orders O \
 JOIN \
 Customers C ON O.customerId = C.customerId;'
 
+    // dropdown menu
     var query2 = 'select * from Customers'
 
     db.pool.query(query1, function (err, results, fields) {
@@ -59,15 +67,15 @@ Customers C ON O.customerId = C.customerId;'
         }
 
         db.pool.query(query2, (error, rows, fields) => {
-            
-            // Save the planets
             let customers = rows;
             return res.render('orders', {data: results, customers: customers});
         })
     });
 });
 
+// retrieve OrderDetails page with table
 app.get('/orderdetails', function (req, res) {
+    // pretty print OrderDetails Table without FK
     var query1 = 'SELECT \
 orderDetailId, \
 C.customerFirstName, \
@@ -84,6 +92,7 @@ Customers C ON O.customerId = C.customerId \
 LEFT JOIN \
 Games G ON OD.gameId = G.gameId;'
 
+    // pretty print dropdown menu for orderId fk
     var query2 = 'SELECT \
 C.customerId, \
 C.customerFirstName, \
@@ -95,6 +104,7 @@ Customers C \
 INNER JOIN \
 Orders O ON C.customerId = O.customerId;'
 
+    // dropdown menu for gameId fk
     var query3 = 'select * from Games'
 
     db.pool.query(query1, function (err, results, fields) {
@@ -116,7 +126,9 @@ Orders O ON C.customerId = O.customerId;'
     });
 });
 
+// retrieve Games page with table
 app.get('/games', function (req, res) {
+    // print Games table
     var query1 = 'SELECT * FROM Games order by gameId asc;'
 
     db.pool.query(query1, function (err, results, fields) {
@@ -130,7 +142,9 @@ app.get('/games', function (req, res) {
     });
 });
 
+// retrieve Platforms page with table
 app.get('/platforms', function (req, res) {
+    // print Platforms table
     var query1 = 'select * from Platforms order by platformId asc;'
 
     db.pool.query(query1, function (err, results, fields) {
@@ -144,7 +158,9 @@ app.get('/platforms', function (req, res) {
     });
 });
 
+// retrieve Genres page with table
 app.get('/genres', function (req, res) {
+    // print Genres table
     var query1 = 'SELECT * FROM Genres order by genreId asc;'
 
     db.pool.query(query1, function (err, results, fields) {
@@ -158,9 +174,9 @@ app.get('/genres', function (req, res) {
     });
 });
 
+// retrieve GamePlatforms page with table
 app.get('/gameplatforms', function (req, res) {
-
-    
+    // pretty print GamePlatforms table w/o FK
     var query1 = 'SELECT \
 gamePlatformId, \
 G.gameTitle, \
@@ -172,6 +188,7 @@ Games G ON GP.gameId = G.gameId \
 LEFT JOIN \
 Platforms P ON GP.platformId = P.platformId;'
 
+    // dropdown for gameId / platformId
     var query2 = "select * FROM Games;"
     var query3 = "select * FROM Platforms;"
 
@@ -195,7 +212,9 @@ Platforms P ON GP.platformId = P.platformId;'
     });
 });
 
+// retrieve GameGenres page with table
 app.get('/gamegenres', function (req, res) {
+    // pretty print GameGenres table w/o FK
     var query1 = 'SELECT \
 gameGenreId, \
 G.gameTitle, \
@@ -207,6 +226,7 @@ Games G ON GG.gameId = G.gameId \
 LEFT JOIN \
 Genres Ge ON GG.genreId = Ge.genreId;'
 
+    // dropdown for gameId / genreId
     var query2 = "select * from Games;"
     var query3 = "select * from Genres;"
 
@@ -230,10 +250,12 @@ Genres Ge ON GG.genreId = Ge.genreId;'
     });
 });
 
+// error page for redundant inserts
 app.get("/error", function (req, res) {
     res.status(404).render("error");
 });
 
+// bad link
 app.get("*", function (req, res) {
     res.status(404).render("404");
 });

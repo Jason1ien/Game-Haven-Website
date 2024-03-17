@@ -8,15 +8,19 @@ let updateGameGenresForm = document.getElementById(
   updateGameGenresForm.addEventListener("submit", async function (e) {
     e.preventDefault();
   
+    // select elements in handlebar file
     let gameGenreId = document.getElementById("mySelect");
   
+      // take value of element
     let gameGenreIdValue = gameGenreId.value;
   
+      // set data = values of elements
     let data = {
       gameGenreId: gameGenreIdValue,
       genreId: null,
     };
   
+    // function in app.js to put data into table
     try {
       const response = await fetch("/put-game-genres-ajax", {
         method: "PUT",
@@ -28,6 +32,8 @@ let updateGameGenresForm = document.getElementById(
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
+
+      // response data from app.js
       const responseData = await response.json();
   
       // Reload the page after the update is completed

@@ -1,11 +1,11 @@
 // const baseUrl = `http://flip3.engr.oregonstate.edu:8719`;
 const baseUrl = `http://localhost:8719`;
 
-var addButton = document.getElementById('add-orderDetails-btn');
-var editButton = document.getElementById('edit-orderDetails-btn');
+// select element from handlebar
 var deleteOrderDetailsButton = document.getElementById('delete-orderDetails-btn');
 
 async function postDeleteOrderDetails(orderDetailId) {
+    // func in app.js to tell database to remove
     try {
         const response = await fetch(`/OrderDetailsDeletePost`, {
             method: "POST",
@@ -33,9 +33,9 @@ async function postDeleteOrderDetails(orderDetailId) {
 
 
 deleteOrderDetailsButton.addEventListener('click', async function () {
-
+    // chosen orderDetailId to delete, relationship to remove
     let orderDetailId = document.getElementById("selectCustomer").value;
 
+    // delete
     await postDeleteOrderDetails(orderDetailId)
-
 })
